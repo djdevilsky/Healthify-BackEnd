@@ -11,6 +11,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = 'id', 'name'        
 
 class DoctorSerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
     name = serializers.CharField()
     imageURL = serializers.CharField()
     experience = serializers.FloatField()
@@ -18,3 +19,14 @@ class DoctorSerializer(serializers.Serializer):
     category = CategorySerializer()
     city = CitySerializer()
 
+class EnrollmentSerializer(serializers.Serializer):
+    firstname = serializers.CharField()
+    phone = serializers.CharField()
+    secondname = serializers.CharField()
+    date = serializers.CharField()
+    doctor = DoctorSerializer()
+
+class Manager(serializers.ModelSerializer):
+    class Meta:
+        model = models.Manager
+        fields = 'id', 'username'
